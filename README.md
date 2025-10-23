@@ -93,9 +93,16 @@ Three classification approaches were implemented:
 * **nltk** → WordNet and other NLP tools
 * **matplotlib**, **seaborn** → visualization
 
+
 ```
 pip install pandas numpy scikit-learn torch torchvision torchaudio transformers matplotlib seaborn nltk
 ```
+
+### Files
+
+  * **glove.6B.100d.txt** – This file is required for the project but is too large to include in the repository. You need to download it manually from the [GloVe website](https://nlp.stanford.edu/projects/glove/) and place it in the project folder.
+
+
 
 ---
 
