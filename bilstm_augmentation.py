@@ -228,9 +228,9 @@ def load_glove_embeddings(glove_file, vocab, embed_dim=100):
 def main():
     # Load dataset
     print("Loading data...")
-    train_set = pd.read_csv('trainset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
-    valid_set = pd.read_csv('validset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
-    test_set = pd.read_csv('testset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
+    train_set = pd.read_csv('Data/trainset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
+    valid_set = pd.read_csv('Data/validset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
+    test_set = pd.read_csv('Data/testset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
     print(f"Training samples: {len(train_set)}")
     print(f"Validation samples: {len(valid_set)}")
     print(f"Test samples: {len(test_set)}")
@@ -254,7 +254,7 @@ def main():
     test_dataset = RecipeDataset(test_set['recipe'].tolist(), test_labels, vocab=train_dataset.vocab)
 
     # Load GloVe embeddings
-    glove_file = "glove.6B.100d.txt"
+    glove_file = "Data/glove.6B.100d.txt"
     pretrained_embeddings = load_glove_embeddings(glove_file, train_dataset.vocab, embed_dim=100)
 
     # Create model
@@ -279,7 +279,7 @@ def main():
     )
 
     # Plot loss curve
-    plot_loss_curve(train_losses, val_losses, "loss_curve_bilstm_augmentation.png")
+    plot_loss_curve(train_losses, val_losses, "Images/loss_curve_bilstm_augmentation.png")
 
     # Evaluate test
     model.eval()
@@ -300,7 +300,7 @@ def main():
         "valid_accuracy": best_val_acc,
         "test_accuracy": test_acc
     }])
-    results_csv_path = "results_summary.csv"
+    results_csv_path = "Data/results_summary.csv"
     if not os.path.exists(results_csv_path):
         results_df.to_csv(results_csv_path, mode='w', header=True, index=False)
     else:

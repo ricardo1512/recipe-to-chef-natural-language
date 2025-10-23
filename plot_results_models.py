@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def plot_model_accuracies(file_path, save_path='models_accuracies.png'):
+def plot_model_accuracies(file_path, save_path='Images/models_accuracies.png'):
     # Load the dataset
     df = pd.read_csv(file_path)
 
@@ -55,4 +55,4 @@ def plot_model_accuracies(file_path, save_path='models_accuracies.png'):
 
 
 if __name__ == "__main__":
-    plot_model_accuracies('results_summary.csv')
+    plot_model_accuracies('Data/results_summary.csv')

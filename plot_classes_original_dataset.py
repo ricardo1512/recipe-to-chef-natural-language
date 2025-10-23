@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def plot_genre_distribution(file_path, save_path='class_distribution_original.png'):
+def plot_genre_distribution(file_path, save_path='Images/class_distribution_original.png'):
     # Load the dataset
     df = pd.read_csv(file_path, sep=';', header=0)
 
@@ -44,4 +44,4 @@ def plot_genre_distribution(file_path, save_path='class_distribution_original.pn
 
 
 if __name__ == "__main__":
-    plot_genre_distribution('train.csv')
+    plot_genre_distribution('Data/train.csv')

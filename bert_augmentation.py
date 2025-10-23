@@ -227,7 +227,7 @@ def plot_loss_curve(log_history, filename):
 # ======================
 # Prediction
 # ======================
-def predict_test_no_labels(model, tokenizer, label_encoder, input_file='test-no-labels_preprocessed.csv', output_file='results.txt', device='cuda'):
+def predict_test_no_labels(model, tokenizer, label_encoder, input_file='Data/test-no-labels_preprocessed.csv', output_file='Data/results.txt', device='cuda'):
     """
     Predict labels for a CSV file with only 'recipe' column and export predictions to a text file.
     """
@@ -268,9 +268,9 @@ def main():
 
     # Load pre-split datasets
     print("Loading data...")
-    train_set = pd.read_csv('trainset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
-    valid_set = pd.read_csv('validset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
-    test_set = pd.read_csv('testset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
+    train_set = pd.read_csv('Data/trainset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
+    valid_set = pd.read_csv('Data/validset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
+    test_set = pd.read_csv('Data/testset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
     print(f"Training samples: {len(train_set)}")
     print(f"Validation samples: {len(valid_set)}")
     print(f"Test samples: {len(test_set)}")
@@ -339,7 +339,7 @@ def main():
 
     # Plot loss curve
     print("Plotting loss curve...")
-    plot_loss_curve(trainer.state.log_history, "loss_curve_bert_augmentation.png")
+    plot_loss_curve(trainer.state.log_history, "Images/loss_curve_bert_augmentation.png")
 
     # Validation
     print("Evaluating on validation set...")
@@ -377,7 +377,7 @@ def main():
     # Save one CSV per true class (actual label)
     for cls in sorted(failures_df['true_label'].unique()):
         cls_failures = failures_df[failures_df['true_label'] == cls]
-        file_path = os.path.join("failed_predictions", f"failures_{cls}.csv")
+        file_path = os.path.join("Data/failed_predictions", f"failures_{cls}.csv")
         cls_failures.to_csv(file_path, sep=';', index=False)
         print(f"  → Saved {len(cls_failures)} failures for true class '{cls}' to {file_path}")
 
@@ -386,7 +386,7 @@ def main():
     # Plot confusion matrix for test set
     # ======================
     print("Plotting confusion matrix for test set...")
-    plot_confusion_matrix(test_labels, test_preds, label_encoder, title="Test Set Confusion Matrix", save_path="confusion_matrix_best_model.png")
+    plot_confusion_matrix(test_labels, test_preds, label_encoder, title="Test Set Confusion Matrix", save_path="Images/confusion_matrix_best_model.png")
 
     # ======================
     # Export results to CSV
@@ -396,7 +396,7 @@ def main():
         "valid_accuracy": val_acc,
         "test_accuracy": test_acc,
     }])
-    results_csv_path = "results_summary.csv"
+    results_csv_path = "Data/results_summary.csv"
     results_df.to_csv(
         results_csv_path,
         mode='a',
@@ -409,8 +409,8 @@ def main():
     # Predict test-no-labels CSV
     # ======================
     predict_test_no_labels(model, tokenizer, label_encoder,
-                           input_file='test-no-labels_preprocessed.csv',
-                           output_file='results.txt',
+                           input_file='Data/test-no-labels_preprocessed.csv',
+                           output_file='Data/results.txt',
                            device=device)
 
 

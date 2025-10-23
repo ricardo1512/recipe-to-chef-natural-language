@@ -2,8 +2,8 @@ import csv
 import ast
 
 # Input and output files
-input_file = 'test-no-labels.csv'
-output_file = 'test-no-labels_preprocessed.csv'
+input_file = 'Data/test-no-labels.csv'
+output_file = 'Data/test-no-labels_preprocessed.csv'
 
 def clean_list_string(text, column_name):
     """Clean list-like strings with special handling for steps, tags, and ingredients"""

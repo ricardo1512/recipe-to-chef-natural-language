@@ -3,12 +3,12 @@ import ast
 import random
 from collections import Counter
 
-csv_file = 'train.csv'
+csv_file = 'Data/train.csv'
 
 # Output files
-train_file = 'trainset_preprocessed.csv'
-valid_file = 'validset_preprocessed.csv'
-test_file = 'testset_preprocessed.csv'
+train_file = 'Data/trainset_preprocessed.csv'
+valid_file = 'Data/validset_preprocessed.csv'
+test_file = 'Data/testset_preprocessed.csv'
 
 # Split ratios
 train_ratio = 0.7

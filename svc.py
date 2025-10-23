@@ -11,9 +11,9 @@ from sklearn.svm import SVC
 # ======================
 def main():
     print("Loading data...")
-    train_set = pd.read_csv('trainset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
-    valid_set = pd.read_csv('validset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
-    test_set = pd.read_csv('testset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
+    train_set = pd.read_csv('Data/trainset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
+    valid_set = pd.read_csv('Data/validset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
+    test_set = pd.read_csv('Data/testset_preprocessed.csv', sep=';', header=0, names=['chef_id', 'recipe'])
     print(f"Training samples: {len(train_set)}")
     print(f"Validation samples: {len(valid_set)}")
     print(f"Test samples: {len(test_set)}")
@@ -60,7 +60,7 @@ def main():
         "valid_accuracy": val_acc,
         "test_accuracy": test_acc
     }])
-    results_csv_path = "results_summary.csv"
+    results_csv_path = "Data/results_summary.csv"
 
     if not os.path.exists(results_csv_path):
         results_df.to_csv(results_csv_path, mode='w', header=True, index=False)
